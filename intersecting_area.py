@@ -49,7 +49,7 @@ import xml.etree.ElementTree as ElementTree
 
 # specific to the WILDTRACK dataset:
 _grid_sizes = (1440, 480)
-_grid_origin = (-300, -90, 0)
+_grid_origin = (-300, -900, 0)
 _grid_step = 2.5
 
 
@@ -201,6 +201,7 @@ def project_grid_points(_origin, _size, _offset, rvec, tvec, camera_matrices, di
                                       np.asarray(tvec[c]),  # translation tvec
                                       camera_matrices[c],  # camera matrix
                                       dist_coef[c])  # distortion coefficients
+        # proj_mat = cameraMatrices[c] @ np.column_stack((cv2.Rodrigues(np.array(rvec[c]))[0], np.array(tvec[c])))
         projected.append(imgpts)
     return projected
 
